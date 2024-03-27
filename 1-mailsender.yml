@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mailsender
+spec:
+  selector:
+    app: mailsender
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mailsender
+spec:
+  selector:
+    matchLabels:
+      app: mailsender
+  template:
+    metadata:
+      labels:
+        app: mailsender
+    spec:
+      containers:
+        - name: mailsender
+          image: ko6ak/mailsender:latest
+          env:
+            - name: KAFKA_BOOTSTRAP-SERVER
+              value: "kafka:9092"

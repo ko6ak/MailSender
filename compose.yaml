@@ -1,0 +1,10 @@
+version: "1.0"
+name: authenticationservice
+services:
+  mailsender:
+    container_name: mailsender
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - KAFKA_BOOTSTRAP-SERVER=kafka:9092
